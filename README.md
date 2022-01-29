@@ -5,4 +5,22 @@ Initial Requirements:
 
 1/29/22:
 - Come up with Project idea
-- Create a project repository on Github - Completed 1/29 with basic repo structure. Assets folder for any potential pictures, sounds, etc...  created. One file for each language created in main directory.
+    Game ideas:
+        -Dungeon Crawler - similar to choose your own adventure
+        -Pong
+        -Flappy Bird
+        -Space shooter kind of game
+        -Platformer
+        
+
+    Game requirements:
+        -Build basic HTML layout with semantic tags for organization
+        -Perhaps a Canvas element for 2d games
+
+    Game layout:
+
+    Pseudocoding:
+
+- Create a project repository on Github 
+    
+    - Completed 1/29 with basic repo structure. Assets folder for any potential pictures, sounds, etc...  created. One file for each language created in main directory.
