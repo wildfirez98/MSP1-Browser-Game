@@ -1,0 +1,38 @@
+/* Build out basic CSS styling so we can see some elements on the HTML file */
+
+.game-header {
+    border: 2px solid green;
+    text-align: center;
+}
+
+.game-center {
+    border: 2px solid red;
+}
+
+.canvas-wrapper {
+    border: 3px solid blue;
+    border-style: solid;
+    width: 90%;
+    margin: 30px;
+    padding: 0px;
+}
+
+.game {
+    position: relative;
+}
+
+#score{
+    position: absolute;
+    top:0px;
+    left:50px;
+    border: 1px solid purple;
+  }
+  
+
+canvas {
+    width: 100%
+}
+
+body {
+    margin: 0;
+}
