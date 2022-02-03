@@ -34,7 +34,16 @@ Initial Requirements:
     - Some kind of Power-ups would be fun as a bonus. Maybe increased speed around the map, for example
     - Additional bonus would be splash screen to "select your hero" where end user can select a different colored block as their hero.
 
-- Initial objectives 1/29
+- Initial objectives 1/31
     - Build HTML template with Canvas element, top div for title header of game. 
     - Basic CSS styling so I can see where HTML elements are
     - Pseudocode some JS functions
+
+2/2/22:
+- Basic game structures created
+- Working mainly in Javascript now
+    - Created main variables for Canvas and drawing to Canvas
+    - Laid out basic game logic
+        - Created class for instantiating game object
+        - Need to build out function for checking on collision between player and enemy. Reference Mozilla: https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+        - Need to build master function to draw everything onto Canvas
