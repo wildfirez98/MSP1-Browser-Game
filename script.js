@@ -44,16 +44,38 @@ class RectPlayer {
   }
 }
 
-
-
-
-
-
-
 // Define function to check for 2d collision
 // Reference Mozilla: https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
-function checkCollision(gameDefault){
-
+function checkCollision(gameDefault) {
+  let playerRect = new RectPlayer (
+    gameDefault.rectPosX,
+    gameDefault.rectPosY,
+    10,
+    10
+  );
+  for (let i = 0; i < gameDefault.enemies.length; ++i){
+    let computerRect = new RectPlayer (
+      gameDefault.enemies[i].x,
+      gameDefault.enemies[i].y,
+      10,
+      10
+    );
+    if (playerRect.playerColliding(computerRect)){
+      return true;
+    }
+  }
+  for (let i = 0; i < gameDefault.bonus.length; i++) {
+    let bonusRect = new RectPlayer(
+      gameDefault.bonus[i].x,
+      gameDefault.bonus[i].y,
+      5,
+      5
+    );
+    if (playerRect.playerColliding(bonusRect)){
+      gameDefault.playerSpeed*=1.05;
+      gameDefault.bonus.splice(i, 1);
+    }
+  }
 }
 
 
