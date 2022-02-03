@@ -3,8 +3,8 @@ const canvas = document.getElementById("canvas-top");
 // Declare CTX variable to store 2D rendering context (tool we use to paint on Canvas)
 const ctx = canvas.getContext("2d");
 
-// Define initial state of game in an object with properties
-let gameInit = {
+// Define default state of game in an object with properties
+let gameDefault = {
     rectPosX: 10,
     rectPosY: canvas.height / 2 - 10,
     rectVelocity: { x: 0, y: 0 },
@@ -13,8 +13,8 @@ let gameInit = {
     enemyTimeoutInit: 60,
     enemySpeed: 1,
     enemies: [],
-    friends: [],
-    friendAdded: false,
+    bonus: [],
+    bonusAdded: false,
     Score: 0,
 };
 
@@ -24,7 +24,25 @@ function random(num) {
 }
 
 // Define class for Rectangle Player
-
+class RectPlayer {
+  constructor(x, y, width, height){
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+  }
+  playerColliding(RectPlayer){
+    if (
+      this.x < RectPlayer.x + RectPlayer.width &&
+      this.x + this.width > RectPlayer.x &&
+      this.y < RectPlayer.y + RectPlayer.height &&
+      this.height + this.y > RectPlayer.y
+    ) {
+      return true;
+    }
+    return false;
+  }
+}
 
 
 
@@ -34,7 +52,9 @@ function random(num) {
 
 // Define function to check for 2d collision
 // Reference Mozilla: https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+function checkCollision(gameDefault){
 
+}
 
 
 
@@ -42,3 +62,6 @@ function random(num) {
 
 
 // Define master function to draw everything onto the Canvas
+function draw() {
+
+}
