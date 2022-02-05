@@ -36,4 +36,11 @@ canvas {
     top:0px;
     left:50px;
 }
-  
+
+a:link {
+    color: hotpink;
+  }
+
+a:visited {
+    color: green;
+}

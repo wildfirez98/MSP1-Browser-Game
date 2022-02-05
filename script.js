@@ -2,6 +2,8 @@
 const canvas = document.getElementById("canvas-top");
 // Declare CTX variable to store 2D rendering context (tool we use to paint on Canvas)
 const ctx = canvas.getContext("2d");
+// Create a new sound object for background music
+const myMusic = new Audio("./assets/Music/Steamtech-Mayhem_Looping.mp3");
 
 // Define default state of game in an object with properties
 let gameDefault = {
@@ -125,6 +127,7 @@ function draw() {
     }
   }
   document.getElementById("score").innerHTML = "Score: " + gameDefault.score; //Update Score via the DOM
+  
   //Bonus Cubes code
   if(gameDefault.score%10 == 0 && gameDefault.bonusAdded == false) {
     gameDefault.bonus.push({
@@ -140,6 +143,7 @@ function draw() {
     ctx.fillStyle = "#34BAEB"; //Bonus cube color
     ctx.fillRect(gameDefault.bonus[i].x, gameDefault.bonus[i].y, 5, 5); //Create bonus cube. Making it 5x5 so its smaller and tougher to get to
   }
+  
   //If Collision detected reset game
   if(checkCollision(gameDefault)==true) {
     gameDefault = {
@@ -180,3 +184,8 @@ document.addEventListener("keydown", function(event) {
     gameDefault.rectVelocity.y = -gameDefault.playerSpeed;
   }
 });
+
+//Call background music
+//myMusic.play();
+myMusic.loop = true;
+ 
