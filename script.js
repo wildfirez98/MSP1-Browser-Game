@@ -124,4 +124,59 @@ function draw() {
       gameDefault.score++;
     }
   }
+  document.getElementById("score").innerHTML = "Score: " + gameDefault.score; //Update Score via the DOM
+  //Bonus Cubes code
+  if(gameDefault.score%10 == 0 && gameDefault.bonusAdded == false) {
+    gameDefault.bonus.push({
+      x: random(canvas.width-20),
+      y: random(canvas.height-20),
+    });
+    gameDefault.bonusAdded = true;
+  }
+  if(gameDefault.score%10 == 1 && gameDefault.bonusAdded == true) {
+    gameDefault.bonusAdded = false;
+  }
+  for (let i = 0; i < gameDefault.bonus.length; ++i) {
+    ctx.fillStyle = "#34BAEB"; //Bonus cube color
+    ctx.fillRect(gameState.bonus[i].x, gameDefault.bonus[i].y, 5, 5); //Create bonus cube. Making it 5x5 so its smaller and tougher to get to
+  }
+  //If Collision detected reset game
+  if(checkCollision(gameDefault)==true) {
+    gameDefault = {
+      rectPosX: 10,
+      rectPosY: canvas.height / 2 - 10,
+      rectVelocity: { x: 0, y: 0 },
+      playerSpeed: 0.5,
+      enemyTimeout: 60,
+      enemyTimeoutInit: 60,
+      enemySpeed: 1,
+      enemies: [],
+      bonus: [],
+      bonusAdded: false,
+      score: 0,
+    };
+  }
 }
+
+//Call setInterval to update Canvas
+setInterval(draw, 20);
+
+//Event listener for arrow keys for player movement
+document.addEventListener("keydown", function(event) {
+  if (event.key == 'ArrowRight') {
+    //right arrow
+    gameDefault.rectVelocity.x = gameDefault.playerSpeed;
+  }
+  if (event.key == 'ArrowLeft') {
+    //left arrow
+    gameDefault.rectVelocity.x = -gameDefault.playerSpeed;
+  }
+  if (event.key == 'ArrowDown') {
+    //up arrow
+    gameDefault.rectVelocity.y = gameDefault.playerSpeed;
+  }
+  if (event.key == 'ArrowUp') {
+    //down arrow
+    gameDefault.rectVelocity.y = -gameDefault.playerSpeed;
+  }
+});
