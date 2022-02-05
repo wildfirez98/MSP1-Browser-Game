@@ -15,7 +15,7 @@ let gameDefault = {
     enemies: [],
     bonus: [],
     bonusAdded: false,
-    Score: 0,
+    score: 0,
 };
 
 // Random number generator. Gives a random integer number between 0 and num, including 0, but not including num.
@@ -78,12 +78,50 @@ function checkCollision(gameDefault) {
   }
 }
 
-
-
-
-
-
 // Define master function to draw everything onto the Canvas
 function draw() {
-
+  ctx.clearRect(0, 0, canvas.width, canvas.height); //Erase Canvas https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/clearRect
+  gameDefault.enemyTimeout -= 1;
+  if (gameDefault.enemyTimeout == 0) { //If game is timeout, begin creating enemy blocks at random spots on Canvas
+    gameDefault.enemyTimeout = Math.floor(gameDefault.enemyTimeoutInit);
+    gameDefault.enemies.push({ 
+      x: canvas.width,
+      y: random(canvas.height),
+      velocity: gameDefault.enemySpeed
+    });
+    gameDefault.enemySpeed *= 1.001;
+    gameDefault.enemyTimeoutInit = gameDefault.enemyTimeoutInit * 0.999;
+  }
+  ctx.fillStyle = "34EB3A"; //Player's color
+  gameDefault.rectPosX += gameState.rectVelocity.x;
+  gameDefault.rectPosY += gameState.rectVelocity.y;
+  if (gameDefault.rectPosX > canvas.width - 10) {
+    gameDefault.rectPosX = canvas.width - 10;
+    gameDefault.rectVelocity.x = 0;
+  }
+  if (gameDefault.rectPosX < 0) {
+    gameDefault.rectPosX = 0;
+    gameDefault.rectVelocity.x = 0;
+  }
+  if (gameDefault.rectPosY < 0) {
+    gameDefault.rectPosY = 0;
+    gameDefault.rectVelocity.y = 0;
+  }
+  if (gameDefault.rectPosY > canvas.height - 10) {
+    gameDefault.rectPosY = canvas.height - 10;
+    gameDefault.rectVelocity.y = 0;
+  }
+  ctx.fillRect(gameDefault.rectPosX, gameDefault.rectPosY, 10, 10); //Render Rectangle to Canvas https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect
+  
+  ctx.fillStyle = "EB8F34" //Computer player's color
+  for (let i = 0; i < gameDefault.enemies.length; ++i) {
+    gameDefault.enemies[i].x -= gameDefault.enemies[i].velocity;
+    ctx.fillRect(gameDefault.enemies[i].x, gameDefault.enemies.y, 10, 10)
+  }
+  for (let i = 0; i < gameDefault.enemies.length; ++i) {
+    if (gameDefault.enemies[i].x < -10) {
+      gameDefault.enemies.splice(i, 1);
+      gameDefault.score++;
+    }
+  }
 }

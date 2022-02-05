@@ -47,3 +47,6 @@ Initial Requirements:
         - Created class for instantiating game object
         - Need to build out function for checking on collision between player and enemy. Reference Mozilla: https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
         - Need to build master function to draw everything onto Canvas
+
+2/5/22:
+- Javascript is 50% coded, working on main draw function to display all items on Canvas now
