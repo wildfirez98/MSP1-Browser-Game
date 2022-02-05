@@ -92,9 +92,9 @@ function draw() {
     gameDefault.enemySpeed *= 1.001;
     gameDefault.enemyTimeoutInit = gameDefault.enemyTimeoutInit * 0.999;
   }
-  ctx.fillStyle = "34EB3A"; //Player's color
-  gameDefault.rectPosX += gameState.rectVelocity.x;
-  gameDefault.rectPosY += gameState.rectVelocity.y;
+  ctx.fillStyle = "#34EB3A"; //Player's color
+  gameDefault.rectPosX += gameDefault.rectVelocity.x;
+  gameDefault.rectPosY += gameDefault.rectVelocity.y;
   if (gameDefault.rectPosX > canvas.width - 10) {
     gameDefault.rectPosX = canvas.width - 10;
     gameDefault.rectVelocity.x = 0;
@@ -113,10 +113,10 @@ function draw() {
   }
   ctx.fillRect(gameDefault.rectPosX, gameDefault.rectPosY, 10, 10); //Render Rectangle to Canvas https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect
   
-  ctx.fillStyle = "EB8F34" //Computer player's color
+  ctx.fillStyle = "#EB8F34"; //Computer player's color
   for (let i = 0; i < gameDefault.enemies.length; ++i) {
     gameDefault.enemies[i].x -= gameDefault.enemies[i].velocity;
-    ctx.fillRect(gameDefault.enemies[i].x, gameDefault.enemies.y, 10, 10)
+    ctx.fillRect(gameDefault.enemies[i].x, gameDefault.enemies[i].y, 10, 10)
   }
   for (let i = 0; i < gameDefault.enemies.length; ++i) {
     if (gameDefault.enemies[i].x < -10) {
@@ -138,7 +138,7 @@ function draw() {
   }
   for (let i = 0; i < gameDefault.bonus.length; ++i) {
     ctx.fillStyle = "#34BAEB"; //Bonus cube color
-    ctx.fillRect(gameState.bonus[i].x, gameDefault.bonus[i].y, 5, 5); //Create bonus cube. Making it 5x5 so its smaller and tougher to get to
+    ctx.fillRect(gameDefault.bonus[i].x, gameDefault.bonus[i].y, 5, 5); //Create bonus cube. Making it 5x5 so its smaller and tougher to get to
   }
   //If Collision detected reset game
   if(checkCollision(gameDefault)==true) {
