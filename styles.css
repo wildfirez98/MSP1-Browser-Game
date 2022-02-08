@@ -1,9 +1,10 @@
-/* Build out basic CSS styling so we can see some elements on the HTML file */
+@import url('https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap');
 
 body {
     color: white;
     margin: 0;
     background-color: #252422;
+    font-family: 'Supermercado One', cursive;
 }
 
 canvas {
@@ -48,3 +49,4 @@ a:visited {
 .credits {
     text-align: center;
 }
+

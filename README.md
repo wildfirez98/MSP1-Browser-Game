@@ -56,3 +56,9 @@ Initial Requirements:
 - Began implementing some sound effects as well. Able to get background music and basic sound effects working
 - Game needs a key or table to tell players how to play the game
 - Need to try and do some additional styling
+
+Update:
+- Imported Google Fonts for basic styling
+- Spent a super long time trying to implement an image background onto the Canvas element, but cannot get to work.
+    -Believe the main issue is that ctx.clearRect is clearing canvas frame and clearing the background image
+    -Could possibly make second Canvas element with just the image display on or behind the first Canvas element for the game

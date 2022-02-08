@@ -10,10 +10,9 @@ const bonusEffect = new Audio("./assets/Effects/SynthChime2.mp3");
 const crashEffect = new Audio("./assets/Effects/SynthChime3.mp3");
 
 // Define initial state of game in an object with properties
-// Update to game state name since value changes
-let gameDefault = {
-    rectPosX: 10,
-    rectPosY: canvas.height / 2 - 10,
+let gameState = {
+    rectPosX: 10, //Position from the left 
+    rectPosY: canvas.height / 2 - 10, //Position from the top - puts cube in center
     rectVelocity: { x: 0, y: 0 },
     playerSpeed: 0.5,
     enemyTimeout: 60,
@@ -44,111 +43,112 @@ class RectPlayer {
     }
     return false;
   }
-}
+};
 
 // Define function to check for 2d collision
 // Reference Mozilla: https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
-function checkCollision(gameDefault) {
+function checkCollision(gameState) {
   let playerRect = new RectPlayer (
-    gameDefault.rectPosX,
-    gameDefault.rectPosY,
+    gameState.rectPosX,
+    gameState.rectPosY,
     10,
     10
   );
-  for (let i = 0; i < gameDefault.enemies.length; ++i){
+  for (let i = 0; i < gameState.enemies.length; ++i){
     let computerRect = new RectPlayer (
-      gameDefault.enemies[i].x,
-      gameDefault.enemies[i].y,
+      gameState.enemies[i].x,
+      gameState.enemies[i].y,
       10,
       10
     );
     if (playerRect.playerColliding(computerRect)){
       crashEffect.play();
-      return true;
+      return true; //Cube collision detected return true and restart
     }
   }
-  for (let i = 0; i < gameDefault.bonus.length; i++) {
+  for (let i = 0; i < gameState.bonus.length; i++) {
     let bonusRect = new RectPlayer(
-      gameDefault.bonus[i].x,
-      gameDefault.bonus[i].y,
+      gameState.bonus[i].x,
+      gameState.bonus[i].y,
       5,
       5
     );
     if (playerRect.playerColliding(bonusRect)){
-      gameDefault.playerSpeed*=1.10;
-      gameDefault.bonus.splice(i, 1);
+      gameState.playerSpeed*=1.10;
+      gameState.bonus.splice(i, 1);
       bonusEffect.play();
+      //Note - does not return true. Bonus cubes keep generating infinitely in the loop. Probably ideal to change this in the future as you add other kinds of bonues or power-ups
     }
   }
-}
+};
 
 // Define master function to draw everything onto the Canvas
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height); //Erase Canvas https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/clearRect
-  gameDefault.enemyTimeout -= 1;
-  if (gameDefault.enemyTimeout == 0) { //If game is timeout, begin creating enemy blocks at random spots on Canvas
-    gameDefault.enemyTimeout = Math.floor(gameDefault.enemyTimeoutInit);
-    gameDefault.enemies.push({ 
+  gameState.enemyTimeout -= 1;
+  if (gameState.enemyTimeout == 0) { //If game is timeout, begin creating enemy blocks at random spots on Canvas
+    gameState.enemyTimeout = Math.floor(gameState.enemyTimeoutInit);
+    gameState.enemies.push({ 
       x: canvas.width,
       y: random(canvas.height),
-      velocity: gameDefault.enemySpeed
+      velocity: gameState.enemySpeed
     });
-    gameDefault.enemySpeed *= 1.001;
-    gameDefault.enemyTimeoutInit = gameDefault.enemyTimeoutInit * 0.999;
+    gameState.enemySpeed *= 1.001;
+    gameState.enemyTimeoutInit = gameState.enemyTimeoutInit * .999; //Seems to be a decent init value. Lower numbers generate a ton of cubes together sometimes creating a wall of cube death and then nothing.
   }
-  ctx.fillStyle = "#34EB3A"; //Player's color
-  gameDefault.rectPosX += gameDefault.rectVelocity.x;
-  gameDefault.rectPosY += gameDefault.rectVelocity.y;
-  if (gameDefault.rectPosX > canvas.width - 10) {
-    gameDefault.rectPosX = canvas.width - 10;
-    gameDefault.rectVelocity.x = 0;
+  ctx.fillStyle = "#7209b7"; //Player's color
+  gameState.rectPosX += gameState.rectVelocity.x;
+  gameState.rectPosY += gameState.rectVelocity.y;
+  if (gameState.rectPosX > canvas.width - 10) {
+    gameState.rectPosX = canvas.width - 10;
+    gameState.rectVelocity.x = 0;
   }
-  if (gameDefault.rectPosX < 0) {
-    gameDefault.rectPosX = 0;
-    gameDefault.rectVelocity.x = 0;
+  if (gameState.rectPosX < 0) {
+    gameState.rectPosX = 0;
+    gameState.rectVelocity.x = 0;
   }
-  if (gameDefault.rectPosY < 0) {
-    gameDefault.rectPosY = 0;
-    gameDefault.rectVelocity.y = 0;
+  if (gameState.rectPosY < 0) {
+    gameState.rectPosY = 0;
+    gameState.rectVelocity.y = 0;
   }
-  if (gameDefault.rectPosY > canvas.height - 10) {
-    gameDefault.rectPosY = canvas.height - 10;
-    gameDefault.rectVelocity.y = 0;
+  if (gameState.rectPosY > canvas.height - 10) {
+    gameState.rectPosY = canvas.height - 10;
+    gameState.rectVelocity.y = 0;
   }
-  ctx.fillRect(gameDefault.rectPosX, gameDefault.rectPosY, 10, 10); //Render Rectangle to Canvas https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect
+  ctx.fillRect(gameState.rectPosX, gameState.rectPosY, 10, 10); //Render Rectangle to Canvas https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect
   
   ctx.fillStyle = "#EB8F34"; //Computer player's color
-  for (let i = 0; i < gameDefault.enemies.length; ++i) {
-    gameDefault.enemies[i].x -= gameDefault.enemies[i].velocity;
-    ctx.fillRect(gameDefault.enemies[i].x, gameDefault.enemies[i].y, 10, 10)
+  for (let i = 0; i < gameState.enemies.length; ++i) {
+    gameState.enemies[i].x -= gameState.enemies[i].velocity;
+    ctx.fillRect(gameState.enemies[i].x, gameState.enemies[i].y, 10, 10)
   }
-  for (let i = 0; i < gameDefault.enemies.length; ++i) {
-    if (gameDefault.enemies[i].x < -10) {
-      gameDefault.enemies.splice(i, 1);
-      gameDefault.score++;
+  for (let i = 0; i < gameState.enemies.length; ++i) {
+    if (gameState.enemies[i].x < -10) {
+      gameState.enemies.splice(i, 1);
+      gameState.score++;
     }
   }
-  document.getElementById("score").innerHTML = "Score: " + gameDefault.score; //Update Score via the DOM
+  document.getElementById("score").innerHTML = "Score: " + gameState.score; //Update Score via the DOM
   
-  //Bonus Cubes code
-  if(gameDefault.score%10 == 0 && gameDefault.bonusAdded == false) {
-    gameDefault.bonus.push({
+  //Bonus Cubes 
+  if(gameState.score%10 == 0 && gameState.bonusAdded == false) {
+    gameState.bonus.push({
       x: random(canvas.width-20),
       y: random(canvas.height-20),
-    });
-    gameDefault.bonusAdded = true;
+    })
+    gameState.bonusAdded = true;
   }
-  if(gameDefault.score%10 == 1 && gameDefault.bonusAdded == true) {
-    gameDefault.bonusAdded = false;
+  if(gameState.score%10 == 1 && gameState.bonusAdded == true) {
+    gameState.bonusAdded = false;
   }
-  for (let i = 0; i < gameDefault.bonus.length; ++i) {
-    ctx.fillStyle = "#34BAEB"; //Bonus cube color
-    ctx.fillRect(gameDefault.bonus[i].x, gameDefault.bonus[i].y, 5, 5); //Create bonus cube. Making it 5x5 so its smaller and tougher to get to
+  for (let i = 0; i < gameState.bonus.length; ++i) {
+    ctx.fillStyle = "#70e000"; //Bonus cube color
+    ctx.fillRect(gameState.bonus[i].x, gameState.bonus[i].y, 5, 5); //Create bonus cube. Making it 5x5 so its smaller and tougher to get to
   }
   
   //If Collision detected reset game
-  if(checkCollision(gameDefault)==true) {
-    gameDefault = {
+  if(checkCollision(gameState)==true) {
+    gameState = {
       rectPosX: 10,
       rectPosY: canvas.height / 2 - 10,
       rectVelocity: { x: 0, y: 0 },
@@ -160,30 +160,30 @@ function draw() {
       bonus: [],
       bonusAdded: false,
       score: 0,
-    };
+    }
   }
-}
+};
 
 //Call setInterval to update Canvas
-setInterval(draw, 20);
+setInterval(draw, 15); //Lower the delay number equals more challenge with cubes. COuld implement game levels with higher difficulty by lowering the refresh delay
 
 //Event listener for arrow keys for player movement
 document.addEventListener("keydown", function(event) {
   if (event.key == 'ArrowRight') {
     //right arrow
-    gameDefault.rectVelocity.x = gameDefault.playerSpeed;
+    gameState.rectVelocity.x = gameState.playerSpeed;
   }
   if (event.key == 'ArrowLeft') {
     //left arrow
-    gameDefault.rectVelocity.x = -gameDefault.playerSpeed;
+    gameState.rectVelocity.x = -gameState.playerSpeed;
   }
   if (event.key == 'ArrowDown') {
     //up arrow
-    gameDefault.rectVelocity.y = gameDefault.playerSpeed;
+    gameState.rectVelocity.y = gameState.playerSpeed;
   }
   if (event.key == 'ArrowUp') {
     //down arrow
-    gameDefault.rectVelocity.y = -gameDefault.playerSpeed;
+    gameState.rectVelocity.y = -gameState.playerSpeed;
   }
 });
 
@@ -195,4 +195,4 @@ function random(num) {
 //Call background music
 myMusic.play();
 myMusic.loop = true;
- 
+
