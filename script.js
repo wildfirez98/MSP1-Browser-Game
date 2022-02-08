@@ -4,8 +4,13 @@ const canvas = document.getElementById("canvas-top");
 const ctx = canvas.getContext("2d");
 // Create a new sound object for background music
 const myMusic = new Audio("./assets/Music/Steamtech-Mayhem_Looping.mp3");
+// Create a sound effect for picking up bonus cube
+const bonusEffect = new Audio("./assets/Effects/SynthChime2.mp3");
+// Create a sound effect for running into Computer player
+const crashEffect = new Audio("./assets/Effects/SynthChime3.mp3");
 
-// Define default state of game in an object with properties
+// Define initial state of game in an object with properties
+// Update to game state name since value changes
 let gameDefault = {
     rectPosX: 10,
     rectPosY: canvas.height / 2 - 10,
@@ -20,12 +25,7 @@ let gameDefault = {
     score: 0,
 };
 
-// Random number generator. Gives a random integer number between 0 and num, including 0, but not including num.
-function random(num) {
-  return Math.floor(Math.random() * num);
-}
-
-// Define class for Rectangle Player
+// Define class for Rectangle Player and create playerColliding function
 class RectPlayer {
   constructor(x, y, width, height){
     this.x = x;
@@ -63,6 +63,7 @@ function checkCollision(gameDefault) {
       10
     );
     if (playerRect.playerColliding(computerRect)){
+      crashEffect.play();
       return true;
     }
   }
@@ -74,8 +75,9 @@ function checkCollision(gameDefault) {
       5
     );
     if (playerRect.playerColliding(bonusRect)){
-      gameDefault.playerSpeed*=1.05;
+      gameDefault.playerSpeed*=1.10;
       gameDefault.bonus.splice(i, 1);
+      bonusEffect.play();
     }
   }
 }
@@ -185,7 +187,12 @@ document.addEventListener("keydown", function(event) {
   }
 });
 
+// Random number generator. Gives a random integer number between 0 and num, including 0, but not including num.
+function random(num) {
+  return Math.floor(Math.random() * num);
+}
+
 //Call background music
-//myMusic.play();
+myMusic.play();
 myMusic.loop = true;
  

@@ -17,7 +17,7 @@ Initial Requirements:
         -Build basic HTML layout with semantic tags for organization
         -Perhaps a Canvas element for 2d games
 
-    Game layout:
+    Game layout: 
 
     Pseudocoding:
 
@@ -50,3 +50,9 @@ Initial Requirements:
 
 2/5/22:
 - Javascript is 50% coded, working on main draw function to display all items on Canvas now
+
+2/7/22:
+- Javascript coding completed. All items working Saturday afternoon after debugging
+- Began implementing some sound effects as well. Able to get background music and basic sound effects working
+- Game needs a key or table to tell players how to play the game
+- Need to try and do some additional styling
