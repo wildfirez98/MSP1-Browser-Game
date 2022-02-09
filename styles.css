@@ -50,3 +50,17 @@ a:visited {
     text-align: center;
 }
 
+.column1 {
+    width: 85%;
+    height: 100vh;
+    background-color: #252422;
+    text-align: right;
+    color: white;
+}
+
+.column2 {
+    width: 25%;
+    color: white;
+    height: 100vh;
+    text-align: left;
+}

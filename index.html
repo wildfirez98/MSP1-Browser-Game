@@ -11,17 +11,30 @@
     <script src="./script.js" defer></script>
 </head>
 <body>
-    <div class="game header">
-        <h1>Welcome to Block Adventurer!</h1>
-    </div>
-    <div class="game center">
-        <div class="canvas-wrapper">
-          <p id="score"></p>
-          <canvas id="canvas-top"></canvas>
+<div style="display: flex; flex-direction: row;">
+    <div class="column1">
+        <div class="game header">
+            <h1>Welcome to Block Adventurer!</h1>
         </div>
+        <div class="game center">
+            <div class="canvas-wrapper">
+                <p id="score"></p>
+                    <canvas id="canvas-top"></canvas>
+            </div>
+            <div class="credits">
+                <p>Credits: Music and Sound Effects by Eric Matyas - <a href ="http://www.soundimage.org">www.soundimage.org</a></p>
+            </div>
+        </div>
+    </div>     
+    <div class="column2">  
+    <h2>How to play the game!</h2>
+        <p>You are the mighty purple hero! Move your character around the map and avoid the orange cubes at all cost!</p>
+        <ul>
+            <li>Use your keyboard arrow keys to move</li>
+            <li>Avoid the orange squares</li>
+            <li>Green cubes give a boost of speed!</li>
+        </ul>
     </div>
-    <div class="credits">
-    <p>Credits: Music and Sound Effects by Eric Matyas - <a href ="http://www.soundimage.org">www.soundimage.org</a></p>
-    </div>    
+</div>  
 </body>
 </html>

@@ -193,6 +193,6 @@ function random(num) {
 }
 
 //Call background music
-myMusic.play();
+//myMusic.play();
 myMusic.loop = true;
 
