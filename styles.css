@@ -3,6 +3,7 @@
 body {
     color: white;
     margin: 0;
+    padding: 0;
     background-color: #252422;
     font-family: 'Supermercado One', cursive;
 }
@@ -51,16 +52,16 @@ a:visited {
 }
 
 .column1 {
-    width: 85%;
+    width: 95%;
     height: 100vh;
-    background-color: #252422;
     text-align: right;
     color: white;
 }
 
 .column2 {
-    width: 25%;
+    width: 35%;
     color: white;
     height: 100vh;
     text-align: left;
 }
+

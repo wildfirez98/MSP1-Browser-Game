@@ -11,28 +11,28 @@ const crashEffect = new Audio("./assets/Effects/SynthChime3.mp3");
 
 // Define initial state of game in an object with properties
 let gameState = {
-    rectPosX: 10, //Position from the left 
-    rectPosY: canvas.height / 2 - 10, //Position from the top - puts cube in center
-    rectVelocity: { x: 0, y: 0 },
-    playerSpeed: 0.5,
-    enemyTimeout: 60,
-    enemyTimeoutInit: 60,
-    enemySpeed: 1,
-    enemies: [],
-    bonus: [],
-    bonusAdded: false,
-    score: 0,
+  rectPosX: 10, //Position from the left 
+  rectPosY: canvas.height / 2 - 10, //Position from the top - puts cube in center
+  rectVelocity: { x: 0, y: 0 },
+  playerSpeed: 0.5,
+  enemyTimeout: 60,
+  enemyTimeoutInit: 60,
+  enemySpeed: 1,
+  enemies: [],
+  bonus: [],
+  bonusAdded: false,
+  score: 0,
 };
 
 // Define class for Rectangle Player and create playerColliding function
 class RectPlayer {
-  constructor(x, y, width, height){
+  constructor(x, y, width, height) {
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
   }
-  playerColliding(RectPlayer){
+  playerColliding(RectPlayer) {
     if (
       this.x < RectPlayer.x + RectPlayer.width &&
       this.x + this.width > RectPlayer.x &&
@@ -48,20 +48,20 @@ class RectPlayer {
 // Define function to check for 2d collision
 // Reference Mozilla: https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
 function checkCollision(gameState) {
-  let playerRect = new RectPlayer (
+  let playerRect = new RectPlayer(
     gameState.rectPosX,
     gameState.rectPosY,
     10,
     10
   );
-  for (let i = 0; i < gameState.enemies.length; ++i){
-    let computerRect = new RectPlayer (
+  for (let i = 0; i < gameState.enemies.length; ++i) {
+    let computerRect = new RectPlayer(
       gameState.enemies[i].x,
       gameState.enemies[i].y,
       10,
       10
     );
-    if (playerRect.playerColliding(computerRect)){
+    if (playerRect.playerColliding(computerRect)) {
       crashEffect.play();
       return true; //Cube collision detected return true and restart
     }
@@ -73,8 +73,8 @@ function checkCollision(gameState) {
       5,
       5
     );
-    if (playerRect.playerColliding(bonusRect)){
-      gameState.playerSpeed*=1.10;
+    if (playerRect.playerColliding(bonusRect)) {
+      gameState.playerSpeed *= 1.10;
       gameState.bonus.splice(i, 1);
       bonusEffect.play();
       //Note - does not return true. Bonus cubes keep generating infinitely in the loop. Probably ideal to change this in the future as you add other kinds of bonues or power-ups
@@ -88,7 +88,7 @@ function draw() {
   gameState.enemyTimeout -= 1;
   if (gameState.enemyTimeout == 0) { //If game is timeout, begin creating enemy blocks at random spots on Canvas
     gameState.enemyTimeout = Math.floor(gameState.enemyTimeoutInit);
-    gameState.enemies.push({ 
+    gameState.enemies.push({
       x: canvas.width,
       y: random(canvas.height),
       velocity: gameState.enemySpeed
@@ -116,7 +116,7 @@ function draw() {
     gameState.rectVelocity.y = 0;
   }
   ctx.fillRect(gameState.rectPosX, gameState.rectPosY, 10, 10); //Render Rectangle to Canvas https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect
-  
+
   ctx.fillStyle = "#EB8F34"; //Computer player's color
   for (let i = 0; i < gameState.enemies.length; ++i) {
     gameState.enemies[i].x -= gameState.enemies[i].velocity;
@@ -129,25 +129,25 @@ function draw() {
     }
   }
   document.getElementById("score").innerHTML = "Score: " + gameState.score; //Update Score via the DOM
-  
+
   //Bonus Cubes 
-  if(gameState.score%10 == 0 && gameState.bonusAdded == false) {
+  if (gameState.score % 10 == 0 && gameState.bonusAdded == false) {
     gameState.bonus.push({
-      x: random(canvas.width-20),
-      y: random(canvas.height-20),
+      x: random(canvas.width - 20),
+      y: random(canvas.height - 20),
     })
     gameState.bonusAdded = true;
   }
-  if(gameState.score%10 == 1 && gameState.bonusAdded == true) {
+  if (gameState.score % 10 == 1 && gameState.bonusAdded == true) {
     gameState.bonusAdded = false;
   }
   for (let i = 0; i < gameState.bonus.length; ++i) {
     ctx.fillStyle = "#70e000"; //Bonus cube color
     ctx.fillRect(gameState.bonus[i].x, gameState.bonus[i].y, 5, 5); //Create bonus cube. Making it 5x5 so its smaller and tougher to get to
   }
-  
+
   //If Collision detected reset game
-  if(checkCollision(gameState)==true) {
+  if (checkCollision(gameState) == true) {
     gameState = {
       rectPosX: 10,
       rectPosY: canvas.height / 2 - 10,
@@ -168,7 +168,7 @@ function draw() {
 setInterval(draw, 15); //Lower the delay number equals more challenge with cubes. COuld implement game levels with higher difficulty by lowering the refresh delay
 
 //Event listener for arrow keys for player movement
-document.addEventListener("keydown", function(event) {
+document.addEventListener("keydown", function (event) {
   if (event.key == 'ArrowRight') {
     //right arrow
     gameState.rectVelocity.x = gameState.playerSpeed;

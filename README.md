@@ -62,3 +62,7 @@ Update:
 - Spent a super long time trying to implement an image background onto the Canvas element, but cannot get to work.
     -Believe the main issue is that ctx.clearRect is clearing canvas frame and clearing the background image
     -Could possibly make second Canvas element with just the image display on or behind the first Canvas element for the game
+
+2/9/22:
+- Implemented two column styling with Flexbox, but needs additional tweaking
+- Having an issue aligning text content to center vertically, suspect the issue is lack of parent container    
