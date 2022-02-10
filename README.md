@@ -1,7 +1,18 @@
 # MSP1-Browser-Game
 Creating an internet browser game with HTML, CSS and Javascript. This Readme file will be constantly updated as the project is designed and developed.
 
-Initial Requirements:
+Future Project Goals:
+- Update game to side-scrolling space flying game
+- Would love to implement shooting and destroying other blocks/characters
+- Implement side-scrolling space background within Canvas element
+- Update main character to spaceship character
+- Update computer or enemy characters to other spaceships or asteroids
+- Implement some kind of Start menu or Game menu
+    -3D looks amazing: https://web.dev/building-a-3d-game-menu-component/
+- Implement additional power-ups
+- Implement better game description with graphics
+
+Project Start and Initial Requirements:
 
 1/29/22:
 - Come up with Project idea
@@ -12,7 +23,6 @@ Initial Requirements:
         -Space shooter kind of game
         -Platformer
         
-
     Game requirements:
         -Build basic HTML layout with semantic tags for organization
         -Perhaps a Canvas element for 2d games

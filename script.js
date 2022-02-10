@@ -1,7 +1,7 @@
 // Declare Canvas variable and grab it in the DOM
 const canvas = document.getElementById("canvas-top");
-// Declare CTX variable to store 2D rendering context (tool we use to paint on Canvas)
-const ctx = canvas.getContext("2d");
+// Declare CTX (short for Context) variable to store 2D rendering context (tool we use to paint on Canvas)
+const ctx = canvas.getContext("2d"); 
 // Create a new sound object for background music
 const myMusic = new Audio("./assets/Music/Steamtech-Mayhem_Looping.mp3");
 // Create a sound effect for picking up bonus cube
@@ -63,11 +63,9 @@ function checkCollision(gameState) {
     );
     if (playerRect.playerColliding(computerRect)) {
       crashEffect.play();
-      return true; //Cube collision detected return true and restart
+      return true; //Cube collision detected return true
     }
-  }
-  for (let i = 0; i < gameState.bonus.length; i++) {
-    let bonusRect = new RectPlayer(
+  }w3schools canvas
       gameState.bonus[i].x,
       gameState.bonus[i].y,
       5,
@@ -77,7 +75,7 @@ function checkCollision(gameState) {
       gameState.playerSpeed *= 1.10;
       gameState.bonus.splice(i, 1);
       bonusEffect.play();
-      //Note - does not return true. Bonus cubes keep generating infinitely in the loop. Probably ideal to change this in the future as you add other kinds of bonues or power-ups
+      //Note - Bonus cubes keep generating infinitely in the loop. Probably ideal to change this in the future as you add other kinds of bonues or power-ups
     }
   }
 };
@@ -165,7 +163,7 @@ function draw() {
 };
 
 //Call setInterval to update Canvas
-setInterval(draw, 15); //Lower the delay number equals more challenge with cubes. COuld implement game levels with higher difficulty by lowering the refresh delay
+setInterval(draw, 15); //Lower the delay number equals more challenge with cubes. Could implement game levels with higher difficulty by lowering the refresh delay
 
 //Event listener for arrow keys for player movement
 document.addEventListener("keydown", function (event) {
@@ -193,6 +191,6 @@ function random(num) {
 }
 
 //Call background music
-//myMusic.play();
+myMusic.play();
 myMusic.loop = true;
 
