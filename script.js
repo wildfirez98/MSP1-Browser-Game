@@ -65,7 +65,9 @@ function checkCollision(gameState) {
       crashEffect.play();
       return true; //Cube collision detected return true
     }
-  }w3schools canvas
+  }
+  for (let i = 0; i < gameState.bonus.length; i++) {
+    let bonusRect = new RectPlayer(
       gameState.bonus[i].x,
       gameState.bonus[i].y,
       5,
