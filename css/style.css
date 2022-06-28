@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap");
+body {
+  color: white;
+  margin: 0;
+  padding: 0;
+  background-color: #252422;
+  font-family: "Supermercado One", cursive;
+}
+
+canvas {
+  width: 100%;
+}
+
+.canvas-wrapper {
+  border-style: solid;
+  border-color: white;
+  width: 90%;
+  margin: 30px;
+  padding: 0px;
+}
+
+.game-header, h1 {
+  text-align: center;
+}
+
+.center {
+  text-align: center;
+}
+
+.game {
+  position: relative;
+}
+
+#score {
+  position: absolute;
+  top: 0px;
+  left: 50px;
+}
+
+a:link {
+  color: hotpink;
+}
+
+a:visited {
+  color: green;
+}
+
+.credits {
+  text-align: center;
+}
+
+.column1 {
+  width: 95%;
+  height: 100vh;
+  text-align: right;
+  color: white;
+}
+
+.column2 {
+  width: 35%;
+  color: white;
+  height: 100vh;
+  text-align: left;
+}
+
+/*# sourceMappingURL=style.css.map */

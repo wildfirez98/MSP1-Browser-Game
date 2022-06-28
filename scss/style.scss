@@ -30,3 +30,67 @@ $canvas-wrapper-border-color: white;
 $canvas-wrapper-border-style: solid;
 $center-text-align: center;
 
+body {
+    color: $secondary-color;
+    margin: 0;
+    padding: 0;
+    background-color: $primary-color;
+    font-family: $body-font-family;
+}
+
+canvas {
+    width: 100%;
+}
+
+.canvas-wrapper {
+    border-style: solid;
+    border-color: $secondary-color;
+    width: 90%;
+    margin: 30px;
+    padding: 0px;
+    
+}
+
+.game-header, h1{
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+}
+
+.game {
+    position: relative;
+}
+
+#score {
+    position: absolute;
+    top:0px;
+    left:50px;
+}
+
+a:link {
+    color: hotpink;
+  }
+
+a:visited {
+    color: green;
+}
+
+.credits {
+    text-align: center;
+}
+
+.column1 {
+    width: 95%;
+    height: 100vh;
+    text-align: right;
+    color: $secondary-color;
+}
+
+.column2 {
+    width: 35%;
+    color: $secondary-color;
+    height: 100vh;
+    text-align: left;
+}
