@@ -1,0 +1,32 @@
+// Acceptance Criteria
+
+//     When looking at the SCSS file, it should successfully incorporate the following:
+//     10-15 SCSS variables - DONE
+//     10-15 nested selectors, with at least 2 uses of the SCSS ampersand (&)
+//     3-5 SCSS mixins
+//     2-4 SCSS functions
+//     2-4 instances of SCSS flow control directives or operators
+//     3-5 SCSS partial files, imported
+//     One of the SCSS error-handling directives
+//     When SCSS compiles to CSS, there are no errors in the console.
+//     Styling has been completed using SCSS only.
+
+// Before submitting, make sure you do a self-review of your code. Check for formatting and spelling, include comments in your code, and ensure you have a healthy commit history.
+
+// Make sure to submit your github repository link on the submission page.
+
+// imports
+@import url('https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap');
+
+// scss variables
+$primary-color: #252422;
+$secondary-color: white;
+$body-font-family: 'Supermercado One', cursive;
+$canvas-width: 100%;
+$canvas-wrapper-width: 90%;
+$canvas-wrapper-padding: 0px;
+$canvas-wrapper-margin: 30px;
+$canvas-wrapper-border-color: white;
+$canvas-wrapper-border-style: solid;
+$center-text-align: center;
+
