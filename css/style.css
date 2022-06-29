@@ -1,14 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap");
+canvas {
+  width: 100%;
+}
+
+#score {
+  position: absolute;
+  top: 0px;
+  left: 50px;
+}
+
 body {
   color: white;
   margin: 0;
   padding: 0;
   background-color: #252422;
   font-family: "Supermercado One", cursive;
-}
-
-canvas {
-  width: 100%;
 }
 
 .canvas-wrapper {
@@ -29,20 +35,6 @@ canvas {
 
 .game {
   position: relative;
-}
-
-#score {
-  position: absolute;
-  top: 0px;
-  left: 50px;
-}
-
-a:link {
-  color: hotpink;
-}
-
-a:visited {
-  color: green;
 }
 
 .credits {

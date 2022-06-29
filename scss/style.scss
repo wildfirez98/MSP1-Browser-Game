@@ -1,13 +1,13 @@
 // Acceptance Criteria
 
 //     When looking at the SCSS file, it should successfully incorporate the following:
-//     10-15 SCSS variables - DONE
+//     10-15 SCSS variables - 
 //     10-15 nested selectors, with at least 2 uses of the SCSS ampersand (&)
 //     3-5 SCSS mixins
 //     2-4 SCSS functions
-//     2-4 instances of SCSS flow control directives or operators
-//     3-5 SCSS partial files, imported
-//     One of the SCSS error-handling directives
+//     2-4 instances of SCSS flow control directives or operators - 
+//     3-5 SCSS partial files, imported - 
+//     One of the SCSS error-handling directives - 
 //     When SCSS compiles to CSS, there are no errors in the console.
 //     Styling has been completed using SCSS only.
 
@@ -17,10 +17,12 @@
 
 // imports
 @import url('https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap');
+@import "_config.scss";
+@import "_utilities.scss";
+@import "_score.scss";
 
 // scss variables
-$primary-color: #252422;
-$secondary-color: white;
+
 $body-font-family: 'Supermercado One', cursive;
 $canvas-width: 100%;
 $canvas-wrapper-width: 90%;
@@ -29,6 +31,12 @@ $canvas-wrapper-margin: 30px;
 $canvas-wrapper-border-color: white;
 $canvas-wrapper-border-style: solid;
 $center-text-align: center;
+$link: hotpink;
+$visited: green;
+$hover: yellow;
+$active: rgb(130, 130, 243);
+
+// styling
 
 body {
     color: $secondary-color;
@@ -38,22 +46,19 @@ body {
     font-family: $body-font-family;
 }
 
-canvas {
-    width: 100%;
-}
-
 .canvas-wrapper {
     border-style: solid;
     border-color: $secondary-color;
-    width: 90%;
-    margin: 30px;
-    padding: 0px;
-    
+    width: $canvas-wrapper-width;
+    margin: $canvas-wrapper-margin;
+    padding: $canvas-wrapper-padding;
 }
 
-.game-header, h1{
-    text-align: center;
-}
+.game-header {
+    h1 {
+        text-align: center;
+    }
+}   
 
 .center {
     text-align: center;
@@ -63,18 +68,19 @@ canvas {
     position: relative;
 }
 
-#score {
-    position: absolute;
-    top:0px;
-    left:50px;
-}
-
-a:link {
-    color: hotpink;
-  }
-
-a:visited {
-    color: green;
+@mixin links ($link, $visited, $hover, $active) {
+    a {
+        color: $link;
+    }
+    &:visited {
+        color: $visited;
+    }
+    &:hover {
+        color: $hover;
+    }
+    &:active {
+        color: $active;
+    }
 }
 
 .credits {
@@ -93,4 +99,16 @@ a:visited {
     color: $secondary-color;
     height: 100vh;
     text-align: left;
+}
+
+// error handling
+body {
+    @debug $secondary-color;
+    @debug $primary-color;
+    @debug $body-font-family;
+    @debug margin; 
+    @debug padding;
+    @debug 1 + 2 * 3 == 1 + (2*3);
+    @debug true or false and false == true or (false and false);
+
 }
